@@ -1,0 +1,1 @@
+ALTER TABLE products ADD `price` real NOT NULL;
