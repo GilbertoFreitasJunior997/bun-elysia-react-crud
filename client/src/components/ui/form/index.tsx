@@ -3,11 +3,10 @@ import * as LabelPrimitive from '@radix-ui/react-label';
 import {
   ComponentPropsWithoutRef,
   ElementRef,
-  FormEvent,
   HTMLAttributes,
   createContext,
   forwardRef,
-  useId,
+  useId
 } from 'react';
 import { Controller, ControllerProps, FieldPath, FieldValues, FormProvider } from 'react-hook-form';
 import { FormFieldContextValue, FormItemContextValue, FormProps } from './types';
@@ -15,23 +14,22 @@ import { FormFieldContextValue, FormItemContextValue, FormProps } from './types'
 import { Label } from '@/components/ui/label';
 import { Slot } from '@radix-ui/react-slot';
 import { cn } from '@/lib/utils';
+import { twMerge } from 'tailwind-merge';
 import { useFormField } from './use-form-field';
 
 export const Form = <TForm extends FieldValues = FieldValues>({
   form,
   children,
-  onSubmit: preOnSubmit,
-  ...props
+  onSubmit,
+  className,
+  formAttributes,
 }: FormProps<TForm>) => {
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    preOnSubmit?.(e);
-  };
-
   return (
     <FormProvider {...form}>
-      <form {...props} onSubmit={onSubmit}>
+      <form
+        {...formAttributes}
+        onSubmit={form.handleSubmit(onSubmit)}
+        className={twMerge(className, formAttributes?.className)}>
         {children}
       </form>
     </FormProvider>

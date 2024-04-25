@@ -7,4 +7,5 @@ export const HomePage: Page = {
   name: 'Home',
   path: 'home',
   icon: MdHome,
+  default: true,
 };

@@ -7,4 +7,5 @@ export type Page = {
   path: string;
   name: string;
   icon: IconType;
+  default?: boolean;
 };

@@ -3,13 +3,20 @@ import { FaRegCircleUser } from 'react-icons/fa6';
 import { LOGIN_FULL_PATH } from '@/router/consts';
 import { MdOutlineExitToApp } from 'react-icons/md';
 import { Popover } from '../ui/popover';
+import { useAuth } from '@/stores/use-auth';
+import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSidebar } from '@/stores/use-sidebar';
 
 export const Topbar = () => {
   const { setIsOpen, isOpen } = useSidebar();
 
+  const user = useAuth(useCallback(s => s.user, []));
   const navigate = useNavigate();
+
+  if (!user) {
+    return null;
+  }
 
   return (
     <aside
@@ -29,9 +36,14 @@ export const Topbar = () => {
               <FaRegCircleUser />
             </Button>
           }>
-          <Button onClick={() => navigate(LOGIN_FULL_PATH)}>
-            <MdOutlineExitToApp /> Exit
-          </Button>
+          <div>
+            <div>
+              {user.name} {user.email}
+            </div>
+            <Button onClick={() => navigate(LOGIN_FULL_PATH)}>
+              <MdOutlineExitToApp /> Exit
+            </Button>
+          </div>
         </Popover>
       </div>
     </aside>

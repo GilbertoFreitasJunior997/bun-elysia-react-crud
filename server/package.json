@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@biomejs/biome": "^1.7.0",
+    "@elysiajs/cors": "^1.0.2",
     "@libsql/client": "^0.6.0",
     "@sinclair/typebox": "^0.32.22",
     "drizzle-orm": "^0.30.9",

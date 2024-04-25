@@ -1,7 +1,7 @@
 import { FieldPath, FieldValues, UseFormReturn } from 'react-hook-form';
 
 import { InputHTMLAttributes } from 'react';
-import { UNSAFE_any } from '@/globals/types';
+import { UNSAFE_any } from '@/lib/types';
 
 export type FormInputProps<TForm extends FieldValues = FieldValues> = Omit<
   InputHTMLAttributes<HTMLInputElement>,
